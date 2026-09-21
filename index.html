@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mitali Joshi — AI/ML, Generative AI, NLP and RAG portfolio.">
+<title>Mitali Joshi | AI/ML • GenAI • RAG</title>
+<style>
+:root{
+  --bg:#07070b;
+  --panel:rgba(18,18,27,.72);
+  --panel2:rgba(255,255,255,.045);
+  --text:#f7f7fb;
+  --muted:#a7a7b5;
+  --line:rgba(255,255,255,.10);
+  --purple:#a78bfa;
+  --pink:#f0abfc;
+  --cyan:#67e8f9;
+  --green:#86efac;
+  --shadow:0 30px 80px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 12% 10%,rgba(167,139,250,.13),transparent 28%),
+    radial-gradient(circle at 88% 18%,rgba(103,232,249,.09),transparent 25%),
+    radial-gradient(circle at 50% 80%,rgba(240,171,252,.06),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;line-height:1.6;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  z-index:20;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(1100px,92%);z-index:15;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px 12px 20px;border:1px solid var(--line);
+  background:rgba(7,7,11,.66);backdrop-filter:blur(18px);
+  border-radius:999px;box-shadow:0 12px 35px rgba(0,0,0,.22);
+}
+.logo{font-weight:800;letter-spacing:-.04em}.logo span{color:var(--purple)}
+.navlinks{display:flex;gap:6px}.navlinks a{font-size:.88rem;color:#c9c9d3;padding:8px 12px;border-radius:999px;transition:.25s}
+.navlinks a:hover{background:rgba(255,255,255,.07);color:white}
+.menu{display:none;border:0;background:none;color:white;font-size:1.4rem}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.eyebrow{
+  display:inline-flex;gap:9px;align-items:center;padding:7px 11px;border:1px solid var(--line);
+  border-radius:999px;color:#d6d6df;background:rgba(255,255,255,.035);font-size:.78rem;
+  margin-bottom:22px;animation:rise .8s both;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 15px var(--green);animation:pulse 1.8s infinite}
+h1{font-size:clamp(3.2rem,7vw,6.6rem);line-height:.94;letter-spacing:-.07em;max-width:760px;animation:rise .9s .08s both}
+.gradient{background:linear-gradient(100deg,#fff 10%,var(--purple) 48%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:28px 0;color:var(--muted);font-size:1.08rem;max-width:650px;animation:rise .9s .16s both}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;animation:rise .9s .24s both}
+.btn{padding:12px 18px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.9rem;transition:.3s}
+.btn.primary{background:white;color:#0a0a0e}.btn:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.28)}
+.btn.ghost{background:rgba(255,255,255,.035);color:#eee}
+.hero-visual{position:relative;display:grid;place-items:center;animation:float 5s ease-in-out infinite}
+.photo-wrap{
+  width:min(390px,80vw);aspect-ratio:4/5;border-radius:34px;padding:8px;
+  background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(167,139,250,.18),rgba(103,232,249,.12));
+  box-shadow:var(--shadow);transform:rotate(2.5deg);
+}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 32%;border-radius:27px;filter:saturate(.88) contrast(1.04)}
+.orbit{position:absolute;width:440px;height:440px;border:1px dashed rgba(167,139,250,.23);border-radius:50%;animation:spin 22s linear infinite}
+.orbit:after{content:"";position:absolute;width:9px;height:9px;background:var(--cyan);border-radius:50%;top:12%;right:8%;box-shadow:0 0 20px var(--cyan)}
+.badge{position:absolute;padding:9px 12px;border:1px solid var(--line);background:rgba(10,10,15,.78);backdrop-filter:blur(12px);border-radius:12px;font-size:.76rem;box-shadow:0 15px 30px rgba(0,0,0,.28)}
+.b1{top:10%;left:-4%}.b2{right:-6%;top:30%}.b3{bottom:8%;left:-6%}
+section{padding:105px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+.kicker{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);font-weight:800}
+h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.05em;margin-top:8px}
+.section-note{color:var(--muted);max-width:450px;font-size:.94rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{
+  border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  border-radius:24px;padding:27px;box-shadow:0 18px 55px rgba(0,0,0,.18);
+  transition:transform .35s,border-color .35s,background .35s;
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.35);background:rgba(255,255,255,.055)}
+.card p{color:var(--muted)}.bigquote{font-size:1.35rem;line-height:1.35;color:#f0eff7;letter-spacing:-.02em}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font-size:.75rem;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:#d5d5df;background:rgba(255,255,255,.03)}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{position:relative;overflow:hidden;min-height:310px}
+.project:before{content:"";position:absolute;inset:-40% 35% 45% -20%;background:radial-gradient(circle,rgba(167,139,250,.22),transparent 65%);pointer-events:none}
+.project-num{font-size:.72rem;color:#858594;letter-spacing:.15em}
+.project h3{font-size:1.65rem;margin:18px 0 8px;letter-spacing:-.035em}
+.project p{font-size:.9rem}.project .tags{position:absolute;left:27px;bottom:27px;right:27px}
+.arrow{position:absolute;right:25px;top:24px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.3s}
+.project:hover .arrow{transform:rotate(45deg);background:white;color:#111}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.skill h3{font-size:1rem;margin-bottom:15px}.skill-list{display:flex;flex-wrap:wrap;gap:8px}
+.skill-pill{padding:8px 11px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:10px;color:#cfcfd9;font-size:.78rem}
+.timeline{border-left:1px solid var(--line);margin-left:9px;padding-left:28px}
+.item{position:relative;margin-bottom:34px}.item:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--purple);left:-33px;top:8px;box-shadow:0 0 18px rgba(167,139,250,.65)}
+.item .date{font-size:.75rem;color:var(--purple);font-weight:800;letter-spacing:.08em}.item h3{margin:4px 0}.item p{color:var(--muted);font-size:.9rem;max-width:760px}
+.contact{
+  text-align:center;padding:70px 25px;border:1px solid var(--line);border-radius:30px;
+  background:radial-gradient(circle at 50% 0%,rgba(167,139,250,.15),transparent 50%),rgba(255,255,255,.025);
+  position:relative;overflow:hidden
+}
+.contact h2{max-width:700px;margin:10px auto 18px}.contact p{color:var(--muted);max-width:580px;margin:0 auto 25px}
+footer{padding:35px 0 50px;color:#777783;font-size:.78rem;display:flex;justify-content:space-between;gap:20px}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+.cursor{display:inline-block;width:3px;height:.9em;background:var(--purple);margin-left:5px;animation:blink 1s infinite}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+@keyframes blink{50%{opacity:0}}
+@media(max-width:800px){
+  nav{top:10px}.navlinks{display:none}.menu{display:block}
+  .hero-grid,.about{grid-template-columns:1fr}.hero{padding-top:115px}.hero-visual{order:-1}
+  .photo-wrap{width:min(310px,75vw)}.orbit{width:340px;height:340px}.badge{display:none}
+  .projects,.skills{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:15px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#home">M<span>.</span>Joshi</a>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </div>
+  <button class="menu" aria-label="Open menu">☰</button>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> AI/ML • GenAI • NLP • RAG</div>
+      <h1>Building <span class="gradient">intelligent systems</span> that turn ideas into products.<span class="cursor"></span></h1>
+      <p>Hi, I'm Mitali — a B.Tech CSE student focused on Generative AI, NLP, retrieval systems, machine learning and practical AI engineering.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#projects">Explore my work ↗</a>
+        <a class="btn ghost" href="#contact">Let's connect</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orbit"></div>
+      <div class="photo-wrap"><img src="mitali-photo.jpeg" alt="Mitali Joshi"></div>
+      <div class="badge b1">RAG / NLP</div><div class="badge b2">AI Agents</div><div class="badge b3">Python • ML</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">01 — Profile</div><h2>Curious by nature.<br>Technical by choice.</h2></div><p class="section-note">I enjoy taking complex AI concepts and turning them into usable, explainable applications.</p></div>
+  <div class="about">
+    <div class="card reveal"><p class="bigquote">“My focus is not just building models — it is building systems around them.”</p><p style="margin-top:18px">My work spans RAG pipelines, natural-language database interfaces, multi-agent systems, computer vision and data analysis. I like experimenting, debugging and understanding how every layer works.</p></div>
+    <div class="card reveal"><p>Currently exploring</p><div class="tags"><span class="tag">Advanced RAG</span><span class="tag">Hybrid Search</span><span class="tag">Agentic AI</span><span class="tag">LLMOps</span><span class="tag">NLP</span><span class="tag">Deep Learning</span><span class="tag">AI Engineering</span></div></div>
+  </div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">02 — Selected work</div><h2>Projects with a purpose.</h2></div><p class="section-note">A snapshot of systems I have designed across GenAI, data, security and ML.</p></div>
+  <div class="projects">
+    <article class="card project reveal"><span class="project-num">01 / GENAI</span><span class="arrow">↗</span><h3>SciRag</h3><p>Scientific-literature RAG pipeline for semantic Q&A and citation-aware retrieval, using advanced chunking and hybrid vector search.</p><div class="tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">HuggingFace</span><span class="tag">ChromaDB</span></div></article>
+    <article class="card project reveal"><span class="project-num">02 / DATABASE AI</span><span class="arrow">↗</span><h3>NaturalDB</h3><p>Natural-language-to-SQL interface that lets users query relational data conversationally through LLM prompting and chaining.</p><div class="tags"><span class="tag">Python</span><span class="tag">MySQL</span><span class="tag">LLMs</span><span class="tag">LangChain</span></div></article>
+    <article class="card project reveal"><span class="project-num">03 / AGENTS</span><span class="arrow">↗</span><h3>Automated VAPT Agent</h3><p>Multi-agent vulnerability-assessment system integrating reconnaissance, scanning and analysis workflows with FastAPI, MCP and LLM tooling.</p><div class="tags"><span class="tag">CrewAI</span><span class="tag">FastAPI</span><span class="tag">LiteLLM</span><span class="tag">MCP</span></div></article>
+    <article class="card project reveal"><span class="project-num">04 / COMPUTER VISION</span><span class="arrow">↗</span><h3>DeepVision</h3><p>Browser-based educational platform demonstrating neural-network concepts with real-time inference and interactive visualization.</p><div class="tags"><span class="tag">TensorFlow.js</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span></div></article>
+  </div>
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">03 — Toolkit</div><h2>What I work with.</h2></div></div>
+  <div class="skills">
+    <div class="card skill reveal"><h3>Programming</h3><div class="skill-list"><span class="skill-pill">Python</span><span class="skill-pill">C++</span><span class="skill-pill">Java</span><span class="skill-pill">JavaScript</span></div></div>
+    <div class="card skill reveal"><h3>AI / ML</h3><div class="skill-list"><span class="skill-pill">TensorFlow</span><span class="skill-pill">PyTorch</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">HuggingFace</span><span class="skill-pill">NLP</span><span class="skill-pill">Deep Learning</span></div></div>
+    <div class="card skill reveal"><h3>GenAI / Agents</h3><div class="skill-list"><span class="skill-pill">LangChain</span><span class="skill-pill">LangGraph</span><span class="skill-pill">CrewAI</span><span class="skill-pill">RAG</span><span class="skill-pill">LLMOps</span><span class="skill-pill">MCP</span></div></div>
+    <div class="card skill reveal"><h3>Data & Databases</h3><div class="skill-list"><span class="skill-pill">MySQL</span><span class="skill-pill">MongoDB</span><span class="skill-pill">ChromaDB</span><span class="skill-pill">Data Analysis</span></div></div>
+    <div class="card skill reveal"><h3>Engineering</h3><div class="skill-list"><span class="skill-pill">FastAPI</span><span class="skill-pill">REST APIs</span><span class="skill-pill">Git</span><span class="skill-pill">Docker</span><span class="skill-pill">Linux</span></div></div>
+    <div class="card skill reveal"><h3>Currently learning</h3><div class="skill-list"><span class="skill-pill">AI Systems</span><span class="skill-pill">Hybrid Retrieval</span><span class="skill-pill">Evaluation</span><span class="skill-pill">Production RAG</span></div></div>
+  </div>
+</div>
+</section>
+
+<section id="experience">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">04 — Experience</div><h2>Learning by building.</h2></div></div>
+  <div class="timeline">
+    <div class="item reveal"><div class="date">JUN 2025 — JUL 2025</div><h3>Data Analysis Trainee · Kota Western Center Railway</h3><p>Analyzed Oscillation Monitoring System sensor data to investigate railway-track anomalies and support predictive-maintenance analysis.</p></div>
+    <div class="item reveal"><div class="date">2025 — PRESENT</div><h3>AI / ML Project Work</h3><p>Hands-on development across RAG, NLP, database intelligence, multi-agent AI, computer vision and machine learning.</p></div>
+    <div class="item reveal"><div class="date">CAMPUS · AI/ML</div><h3>SCIMAT Club — Elective Committee Member</h3><p>Supported technical events and AI/ML engagement activities within the university community.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="contact reveal">
+    <div class="kicker">05 — Contact</div>
+    <h2>Have an interesting AI problem?</h2>
+    <p>I'm open to internships, entry-level opportunities, technical collaborations and conversations around AI/ML and GenAI.</p>
+    <div class="buttons" style="justify-content:center">
+      <a class="btn primary" href="mailto:YOUR_EMAIL@example.com">Email me ↗</a>
+      <a class="btn ghost" href="https://github.com/" target="_blank">GitHub ↗</a>
+      <a class="btn ghost" href="https://www.linkedin.com/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer class="container"><span>© 2026 Mitali Joshi</span><span>Designed & built with curiosity.</span></footer>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const menu=document.querySelector('.menu'), links=document.querySelector('.navlinks');
+menu.addEventListener('click',()=>{
+  const open=links.style.display==='flex';
+  links.style.display=open?'none':'flex';
+  if(!open){links.style.position='absolute';links.style.top='58px';links.style.right='0';links.style.flexDirection='column';links.style.background='rgba(7,7,11,.96)';links.style.padding='10px';links.style.border='1px solid rgba(255,255,255,.1)';links.style.borderRadius='18px';}
+});
+</script>
+</body>
+</html>
