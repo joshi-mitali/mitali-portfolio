@@ -169,16 +169,14 @@ button { font: inherit; }
 .hero-statement { z-index: 4; width: min(1420px, 100%); text-align: center; }
 .hero-statement p { max-width: 750px; margin: 0 auto; font-family: "Manrope", sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.55rem); font-weight: 500; letter-spacing: -.025em; line-height: 1.4; color: var(--ink); }
 .hero-statement span { display: block; margin-top: 14px; color: var(--ink-muted); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; }
-.hero-footer__note { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .63rem; letter-spacing: .12em; color: var(--ink-muted); }
-.hero-footer { position: absolute; left: clamp(20px, 4vw, 64px); right: clamp(20px, 4vw, 64px); bottom: 24px; z-index: 4; display: flex; justify-content: space-between; align-items: center; }
+.hero-footer { position: absolute; left: clamp(20px, 4vw, 64px); right: clamp(20px, 4vw, 64px); bottom: 24px; z-index: 4; display: flex; justify-content: flex-start; align-items: center; }
 .hero-socials { display: flex; gap: 10px; }
 .hero-socials a { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; transition: background .2s, color .2s; }
 .hero-socials a:hover { background: var(--ink); color: var(--paper); }
-.scroll-cue { display: flex; align-items: center; gap: 9px; color: var(--ink-muted); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; }
+.scroll-cue { position: absolute; left: 50%; display: flex; align-items: center; gap: 9px; color: var(--ink-muted); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; transform: translateX(-50%); }
 .scroll-cue span { display: inline; }
 .scroll-cue svg { animation: bounce 1.7s ease infinite; }
 @keyframes bounce { 50% { transform: translateY(5px); } }
-.hero-footer__note { display: inline; }
 
 .section-shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 .profile-section, .work-section, .experience-section { position: relative; padding: clamp(88px, 10vw, 136px) 0; scroll-margin-top: 0; transition: background-color 500ms cubic-bezier(.16,1,.3,1), color 400ms ease; }
@@ -292,7 +290,6 @@ footer a { color: var(--ink); }
   .hero-content { inset: 76px 0 62px; }
   .hero-name { gap: 16px; }
   .hero-footer { left: 20px; right: 20px; }
-  .hero-footer__note { display: none; }
   .menu-panel { padding: 100px 24px 30px; }
   .menu-panel nav a { grid-template-columns: 34px 1fr auto; font-size: clamp(2.6rem, 12vw, 4.6rem); }
   .section-shell { width: min(100% - 32px, 1180px); }

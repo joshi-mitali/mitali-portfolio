@@ -143,7 +143,6 @@ export default function PortfolioHero() {
           <a className="focus-ring" href="#contact" aria-label="Contact Mitali"><UserRound size={18} /></a>
         </div>
         <a className="scroll-cue focus-ring" href="#profile" aria-label="Scroll to profile"><span>Scroll to explore</span><ArrowDown size={18} /></a>
-        <span className="hero-footer__note">Ideas → systems → impact</span>
       </div>
     </section>
   );
