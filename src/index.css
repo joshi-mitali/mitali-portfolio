@@ -350,7 +350,6 @@ footer a { color: var(--ink); }
 
 @media (max-width: 360px) {
   .hero-name { font-size: min(25.5vw, 15svh); }
-  .portrait-stage { width: 110px; }
   .hero-statement p { font-size: .95rem; }
 }
 
