@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight, CodeXml, Menu, Moon, Sun, UserRound, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, CodeXml, Moon, Sun, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -30,18 +30,21 @@ function AnimatedWord({ word, className = "" }: { word: string; className?: stri
 export default function PortfolioHero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const tiltFrame = useRef(0);
 
   useEffect(() => {
     const saved = localStorage.getItem("mitali-theme");
     const nextDark = saved ? saved === "dark" : true;
     setDark(nextDark);
     document.documentElement.classList.toggle("dark", nextDark);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextDark ? "#070807" : "#f7f7f5");
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (menuOpen) document.querySelector<HTMLAnchorElement>("#site-menu nav a")?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
@@ -55,28 +58,42 @@ export default function PortfolioHero() {
     };
   }, [menuOpen]);
 
+  useEffect(() => () => cancelAnimationFrame(tiltFrame.current), []);
+
   const toggleTheme = () => {
     const nextDark = !dark;
     setDark(nextDark);
     document.documentElement.classList.toggle("dark", nextDark);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextDark ? "#070807" : "#f7f7f5");
     localStorage.setItem("mitali-theme", nextDark ? "dark" : "light");
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
-    setTilt({
-      x: ((event.clientX - rect.left) / rect.width - 0.5) * 10,
-      y: ((event.clientY - rect.top) / rect.height - 0.5) * -8,
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+    cancelAnimationFrame(tiltFrame.current);
+    tiltFrame.current = requestAnimationFrame(() => {
+      portraitRef.current?.style.setProperty("--tilt-x", `${y}deg`);
+      portraitRef.current?.style.setProperty("--tilt-y", `${x}deg`);
+    });
+  };
+
+  const resetTilt = () => {
+    cancelAnimationFrame(tiltFrame.current);
+    tiltFrame.current = requestAnimationFrame(() => {
+      portraitRef.current?.style.setProperty("--tilt-x", "0deg");
+      portraitRef.current?.style.setProperty("--tilt-y", "0deg");
     });
   };
 
   return (
-    <section id="top" className="hero-shell" onPointerMove={handlePointerMove} onPointerLeave={() => setTilt({ x: 0, y: 0 })}>
+    <section id="top" className="hero-shell" tabIndex={-1} onPointerMove={handlePointerMove} onPointerLeave={resetTilt}>
       <a href="#profile" className="skip-link">Skip to profile</a>
       <header className="site-header">
-        <Button ref={menuButtonRef} className="round-control" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? "Close menu" : "Open menu"}>
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        <Button ref={menuButtonRef} className={`round-control menu-control ${menuOpen ? "is-open" : ""}`} onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? "Close menu" : "Open menu"}>
+          <span className="menu-control__lines" aria-hidden="true"><i /><i /></span>
         </Button>
         <a className="wordmark focus-ring" href="#top" aria-label="Mitali Joshi, home">M</a>
         <Button className="round-control" onClick={toggleTheme} aria-label={`Use ${dark ? "light" : "dark"} theme`}>
@@ -99,21 +116,26 @@ export default function PortfolioHero() {
         </div>
       </div>
 
-      <div className="hero-grid-pattern" aria-hidden="true" />
-      <div className="hero-kicker hero-animate"><span className="status-dot" />AI engineer · Open to opportunities</div>
-      <div className="hero-name" aria-label="Mitali Joshi">
-        <AnimatedWord word="MITALI" />
-        <AnimatedWord word="JOSHI" className="hero-word--outline" />
-      </div>
-      <div className="portrait-stage hero-animate" style={{ "--tilt-x": `${tilt.y}deg`, "--tilt-y": `${tilt.x}deg` } as React.CSSProperties}>
-        <div className="signal-rings" aria-hidden="true"><i /><i /><i /></div>
-        <div className="portrait-card">
-          <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Mitali Joshi" />
+      <div className="hero-content">
+        <div className="hero-kicker hero-animate"><span className="status-dot" />Mitali Joshi · Open to AI/ML internships</div>
+        <div className="hero-main">
+          <h1 className="hero-name" aria-label="Mitali Joshi">
+            <AnimatedWord word="MITALI" />
+            <AnimatedWord word="JOSHI" className="hero-word--outline" />
+          </h1>
+          <div ref={portraitRef} className="portrait-stage hero-animate">
+            <div className="portrait-card">
+              <picture>
+                <source srcSet={`${import.meta.env.BASE_URL}profile.webp`} type="image/webp" />
+                <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Mitali Joshi" width="418" height="658" decoding="async" fetchPriority="high" />
+              </picture>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="hero-statement hero-animate">
-        <p>I build RAG, NLP, and agent systems from prototype to interface.</p>
-        <span>RAG · NLP · AGENTS · ML</span>
+        <div className="hero-statement hero-animate">
+          <p>I build RAG, NLP, and agent systems from prototype to interface.</p>
+          <span>Research · Engineering · Interface</span>
+        </div>
       </div>
       <div className="hero-footer hero-animate">
         <div className="hero-socials">

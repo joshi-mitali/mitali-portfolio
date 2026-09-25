@@ -21,6 +21,8 @@ export function CursorTrail({
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !images.length) return;
+    const section = container.closest<HTMLElement>(".work-section");
+    if (!section) return;
 
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -51,7 +53,7 @@ export function CursorTrail({
       );
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const handlePointerMove = (event: PointerEvent) => {
       const rect = container.getBoundingClientRect();
       const currentX = event.clientX - rect.left;
       const currentY = event.clientY - rect.top;
@@ -79,8 +81,13 @@ export function CursorTrail({
       lastY += (currentY - lastY) * finalProgress;
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const handlePointerLeave = () => { isInitial = true; };
+    section.addEventListener("pointermove", handlePointerMove, { passive: true });
+    section.addEventListener("pointerleave", handlePointerLeave);
+    return () => {
+      section.removeEventListener("pointermove", handlePointerMove);
+      section.removeEventListener("pointerleave", handlePointerLeave);
+    };
   }, [distance, duration, imageSize, images]);
 
   return (
