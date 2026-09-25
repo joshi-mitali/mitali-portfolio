@@ -326,6 +326,7 @@ footer a { color: var(--ink); }
   .hero-statement p { margin: 0 auto; max-width: 440px; font-size: clamp(1rem, 3.6vw, 1.2rem); }
   .hero-statement span { font-size: .59rem; }
   .hero-footer { bottom: 18px; }
+  .scroll-cue { bottom: 58px; }
   .scroll-cue span { display: none; }
   .hero-socials a { width: 36px; height: 36px; }
   .profile-section, .work-section, .experience-section { padding: 88px 0; }
